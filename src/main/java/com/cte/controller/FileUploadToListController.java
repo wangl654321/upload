@@ -36,7 +36,7 @@ import java.util.Map;
 @Controller
 public class FileUploadToListController {
 
-    private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
+    private static final Logger logger = LoggerFactory.getLogger(FileUploadToListController.class);
 
     @Autowired
     private ImportExcelUtil importExcelUtil;
@@ -48,7 +48,7 @@ public class FileUploadToListController {
     @ResponseBody
     @RequestMapping(value = "/uploadFile_file",method = RequestMethod.POST)
     public String uploadFileHandler(@RequestParam("file") MultipartFile file) throws Exception {
-
+        //请看document中的load.xlxs的模板
         Map<String, String> map = new HashMap<>();
         map.put("id", "id");
         map.put("姓名", "name");

@@ -5,7 +5,7 @@
 	<groupId>fileUpload</groupId>
 	<artifactId>upload</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<packaging>pom</packaging>
+	<packaging>war</packaging>
 
 	<properties>
 		<org.poi-version>3.14</org.poi-version>
