@@ -56,7 +56,7 @@ public class FileUploadToListController {
         map.put("时间", "time");
         map.put("金额", "money");
         List<Map<String, Object>> ls = importExcelUtil.parseExcel(file, map);
-        logger.info(ls.toString());
+        System.out.println(ls.toString());
 
         return "ok";
     }
