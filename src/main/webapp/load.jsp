@@ -8,6 +8,8 @@
               method="post" enctype="multipart/form-data">
             <input id="file" name="file" type="file"/><br/><br/>　　
             <button type="submit"> 导 入</button>
+
+            <a href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/excel_load">导出</a>
         </form>
     </body>
 </html>
