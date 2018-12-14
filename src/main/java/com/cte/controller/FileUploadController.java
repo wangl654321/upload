@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -27,8 +29,8 @@ import com.cte.entity.Status;
  *
  * 描    述：文件上传
  *
- * 创 建 者： wangl
- * 创建时间： 2017-11-30 13:37
+ * 创 建 者： @author wl
+ * 创建时间： 2018/12/13 18:07
  * 创建描述：
  *
  * 修 改 者：
@@ -53,8 +55,8 @@ public class FileUploadController {
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST, produces = "application/json;charset=utf8")
     @ResponseBody
     public Message uploadFileHandler(@RequestParam("file") MultipartFile file) throws IOException {
-
-        String path = "E:/upload/fileUpload/";//文件上传位置
+        //文件上传位置
+        String path = "E:/upload/fileUpload/";
 
         logger.info("上传单个或多个文件");
         if (!file.isEmpty()) {

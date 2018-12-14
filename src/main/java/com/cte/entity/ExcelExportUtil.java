@@ -14,15 +14,34 @@ import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * 描述:poi根据模板导出excel,根据excel坐标赋值,如(B1)
+/***
+ *
+*
+* 描    述：poi根据模板导出excel,根据excel坐标赋值,如(B1)
+*
+* 创 建 者： @author wl
+* 创建时间： 2018/12/13 18:06
+* 创建描述：
+*
+* 修 改 者：
+* 修改时间：
+* 修改描述：
+*
+* 审 核 者：
+* 审核时间：
+* 审核描述：
+*
  */
 public class ExcelExportUtil {
 
-    //模板map
-    private Map<String, Workbook> tempWorkbook = new HashMap<String, Workbook>();
-    //模板输入流map
-    private Map<String, InputStream> tempStream = new HashMap<String, InputStream>();
+    /**
+     * 模板map
+     */
+    private Map<String, Workbook> tempWorkbook = new HashMap<>();
+    /**
+     * 模板输入流map
+     */
+    private Map<String, InputStream> tempStream = new HashMap<>();
 
     /**
      * 功能:按模板向Excel中相应地方填充数据
@@ -74,9 +93,11 @@ public class ExcelExportUtil {
             tempCells.add(tempCell);
         }
         //赋值
-        for (int i = 0; i < datalist.size(); i++) {//数据行
+        //数据行
+        for (int i = 0; i < datalist.size(); i++) {
             Map<Integer, Object> dataMap = datalist.get(i);
-            for (int j = 0; j < tempCells.size(); j++) {//列
+            //列
+            for (int j = 0; j < tempCells.size(); j++) {
                 TempCell tempCell = tempCells.get(j);
                 tempCell.setData(dataMap.get(j + 1));
                 setCell(tempCell, wsheet);
@@ -164,7 +185,8 @@ public class ExcelExportUtil {
 
         Row rowIn = sheet.getRow(tempCell.getRow());
         if (rowIn == null) {
-            copyRows(tempCell.getRow() - 1, tempCell.getRow() - 1, tempCell.getRow(), sheet);//复制上一行
+            //复制上一行
+            copyRows(tempCell.getRow() - 1, tempCell.getRow() - 1, tempCell.getRow(), sheet);
             rowIn = sheet.getRow(tempCell.getRow());
         }
         Cell cellIn = rowIn.getCell(tempCell.getColumn());
@@ -235,7 +257,9 @@ public class ExcelExportUtil {
     private void setRegionStyle(CellStyle cs, CellRangeAddress region, Sheet sheet) {
         for (int i = region.getFirstRow(); i <= region.getLastRow(); i++) {
             Row row = sheet.getRow(i);
-            if (row == null) row = sheet.createRow(i);
+            if (row == null) {
+                row = sheet.createRow(i);
+            }
             for (int j = region.getFirstColumn(); j <= region.getLastColumn(); j++) {
                 Cell cell = row.getCell(j);
                 if (cell == null) {

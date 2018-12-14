@@ -44,7 +44,8 @@ public class CreateExcel {
 
 
         //在相应的单元格进行赋值
-        HSSFCell cell = sheet.getRow(2).getCell(1);//第11行 第6列
+        //第11行 第6列
+        HSSFCell cell = sheet.getRow(2).getCell(1);
         cell.setCellValue(1);
         HSSFCell cell2 = sheet.getRow(2).getCell(3);
         cell2.setCellValue(2);
