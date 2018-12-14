@@ -109,10 +109,8 @@
             height: 4em;
         }
     </style>
-
     <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-
 </head>
 
 <body>
@@ -134,16 +132,15 @@
                 </form>
             </div>
         </div>
-
-
     </div>
+
     <div class="push"></div>
 </div>
 </body>
 <footer class="footer">
     <div class=" col-lg-12 text-center">
         <hr>
-        <p>北京大成股份有限公司 &copy; 2017zgzcwy.com</p>
+        <p>北京有限公司 &copy; 2017wang.com</p>
     </div>
 </footer>
     <script>

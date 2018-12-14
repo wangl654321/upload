@@ -1,17 +1,9 @@
 package com.cte.controller;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
+import com.cte.entity.Message;
+import com.cte.entity.Status;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.log4j.LogManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -21,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.cte.entity.Message;
-import com.cte.entity.Status;
+import java.io.*;
+import java.util.ArrayList;
 
 /***
  *
@@ -52,8 +44,8 @@ public class FileUploadController {
      * @时间： 2017-11-30 13:37
      * @创建人：wangl
      */
-    @RequestMapping(value = "/uploadFile", method = RequestMethod.POST, produces = "application/json;charset=utf8")
     @ResponseBody
+    @RequestMapping(value = "/uploadFile", method = RequestMethod.POST, produces = "application/json;charset=utf8")
     public Message uploadFileHandler(@RequestParam("file") MultipartFile file) throws IOException {
         //文件上传位置
         String path = "E:/upload/fileUpload/";
@@ -61,6 +53,7 @@ public class FileUploadController {
         logger.info("上传单个或多个文件");
         if (!file.isEmpty()) {
             InputStream is = null;
+
             FileOutputStream fos = null;
             int length = 0;
             try {
@@ -99,7 +92,6 @@ public class FileUploadController {
                     fos.close();
                 }
             }
-
         } else {
             Message msg = new Message();
             msg.setStatus(Status.ERROR);
@@ -113,14 +105,13 @@ public class FileUploadController {
      * @时间： 2017-11-30 13:37
      * @创建人：wangl
      */
-    @RequestMapping(value = "/uploadMultipleFile", method = RequestMethod.POST, produces = "application/json;charset=utf8")
     @ResponseBody
+    @RequestMapping(value = "/uploadMultipleFile", method = RequestMethod.POST, produces = "application/json;charset=utf8")
     public Message uploadMultipleFileHandler(@RequestParam("file") MultipartFile[] files) throws IOException {
+
         Message msg = new Message();
         ArrayList<Integer> arr = new ArrayList<>();
-
         for (int i = 0; i < files.length; i++) {
-
             MultipartFile file = files[i];
             if (!file.isEmpty()) {
                 InputStream in = null;
@@ -140,7 +131,6 @@ public class FileUploadController {
                         out.write(b, 0, len);
                     }
                     logger.info("保存File路径--->{}" + serverFile.getAbsolutePath());
-
                 } catch (Exception e) {
                     arr.add(i);
                 } finally {
@@ -150,10 +140,7 @@ public class FileUploadController {
             } else {
                 arr.add(i);
             }
-
-
         }
-
         if (arr.size() > 0) {
             msg.setStatus(Status.ERROR);
             msg.setError("Files upload fail");
